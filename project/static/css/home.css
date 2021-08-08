@@ -33,10 +33,13 @@ body .login form input{
 body .login form button{
     width: 90%;
     border: transparent;
-    background-color: #2B3240;
+    background-color: #a1a1a1e8;
     height: 40px;
     border-radius: 10px;
     color: #F2994B;
+}
+body .login form button:hover{
+    background-color: #4b5463;
 }
 body .about , body .login{
     flex-direction: column;

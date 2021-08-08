@@ -92,6 +92,7 @@ def registerpet():
 @app.route('/registerusermessage',methods=['GET','POST'])
 def newuser():
     message = ""
+    location = "/profile"
     if request.method == "POST":
         if request.form.get('input_password') == request.form.get('input_password_repeat'):
             newUser = User()
@@ -100,8 +101,14 @@ def newuser():
             newUser.identity_number = int(request.form.get('input_identity_number'))
             newUser.email = str(request.form.get('input_email'))
             newUser.password = str(request.form.get('input_password'))
-            insert(newUser)
-    return render_template('response/sucess.html',message = "You are our new user!")
+            if insert(newUser):
+                loged(newUser.email, newUser.password)
+                message = "You are our new user!"
+            else:
+                message = "Existing Account"
+                location = "/registeruser"
+    
+    return render_template('response/sucess.html',message = message,location=lotation)
 # here we define a route to page where shows a message about user registration
 # aqui nos definimos a rota para a pagina de mensagem sobre o registro de usuário
 @app.route('/registerpetmessage',methods=['GET','POST'])
@@ -117,14 +124,15 @@ def jobs():
 @app.route('/login',methods=['GET','POST'])
 def login():
     email =str(request.form.get('input_email'))
-
-    newlogin = User.query.all()
-
-    for i in newlogin:
-            if i.password == str(request.form.get('input_password')) and i.email == email:
-                session['user']=i.id 
-                app.secret_key = i.password
-                return render_template('response/sucess.html',message = "you are loging!")
+    password = str(request.form.get('input_password'))
+    message = ""
+    if loged(email, password):
+        message = "you are loging!"
+        return render_template('response/sucess.html',message = message,location="/profile")
+    else:
+        message ="Error Account"
+        return render_template('response/sucess.html',message = message,location="/home")
+        
 # here we define a route for logout user
 # aqui nós definimos uma rota para deslogar o usuário
 @app.route('/loginout')
@@ -149,13 +157,31 @@ def updateuser():
     newupdate.qualification = request.form.get('input_qualification')
     newupdate.recomendation = request.form.get('input_recomandation')
     update("sucess!")
-    return render_template('response/sucess.html',message = "sucess!")
+    return render_template('response/sucess.html',message = "sucess!",location="/profile")
+# here we define a route to remove a user from database
+# aqui nós definimos uma rota para remover um usuário da base de dados
+@app.route('/remove/<id>')
+def remove(id):
+    userRemove = User.query.get(id)
+    delete(userRemove)
+    return render_template('response/sucess.html',message = "user has been deleted",location="/home")
+# here we setup loged user
+# aqui setamos o usuário logado
+def loged(email,password):
+    newlogin = User.query.all()
+    for i in newlogin:
+            if i.password == password and i.email == email:
+                session['user']=i.id 
+                app.secret_key = i.password
+                return True
+    return False
+
 # here we send delete request
 # aqui nós enviamos o pedido de esclusão ao banco
-def delete(value,message = "sucess!"):
+def delete(value):
     db.session.delete(value)
     db.session.commit()
-    return render_template('response/sucess.html',message = message)
+    return True
 # here we send update request
 # aqui enviamos o pedido de atualização dos dados
 def update(message = "sucess!"):
@@ -164,8 +190,13 @@ def update(message = "sucess!"):
 # here we add a new datavalue
 # aqui nós adicionamos um novo valor no banco
 def insert(value):
+    users = User.query.all()
+    for i in users:
+        if i.email == value.email:
+            return False
     db.session.add(value)
     db.session.commit()
+    return True
 
     
 # the function here start de app 

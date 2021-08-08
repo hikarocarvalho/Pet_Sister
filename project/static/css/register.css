@@ -32,10 +32,13 @@ form input{
 }
 form button{
     height: 40px;
-    background-color: #2B3240;
+    background-color: #a1a1a1e8;
     border: transparent;
     border-radius: 10px;
     color: #F2994B;
+}
+form button:hover{
+    background-color: #4b5463;
 }
 form input:focus{
     outline: 0;

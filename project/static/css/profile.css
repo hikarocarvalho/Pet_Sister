@@ -36,10 +36,31 @@ body .perfilphoto main{
 }
 body .perfilphoto article{
     display: flex;
+    flex-direction: column;
+    
     color: #2B3240;
     margin-top: 10%;
     width: 50%;
     height: 20px;
+}
+body .perfilphoto article label{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+body .perfilphoto article label a{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    padding: 0;
+    width: 100%;
+    background-color: #2B3240;
+    color:#F2994B;
+    border-radius: 10px;
+}
+body .perfilphoto article label a:hover{
+    background-color: #4b5463;
 }
 body .perfilphoto article label{
     text-align: center;
@@ -100,6 +121,9 @@ form fieldset button{
     border: transparent;
     border-radius: 10px;
     color: #F2994B;
+}
+form fieldset button:hover{
+    background-color: #4b5463;
 }
 form fieldset input:focus{
     outline: 0;

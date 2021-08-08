@@ -115,9 +115,11 @@ function enable(){
         if(validate[i] == true){
             if(i==5){
                 send.disabled = false;
+                send.style.backgroundColor="#2B3240"
             }
         }else{
             send.disabled = true;
+            send.style.backgroundColor="#a1a1a1e8"
         }
     }
     
