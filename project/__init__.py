@@ -168,7 +168,8 @@ def insert(value):
     db.session.commit()
 
     
-
+# the function here start de app 
+# aqui a função inicia o aplicativo
 if __name__ == '__main__':   
     db.create_all()
     app.run(debug=True)
