@@ -64,8 +64,14 @@ class User(db.Model):
 # aqui definimos a rota do index
 @app.route('/')
 def index(): 
-    session['user'] = None
-    return render_template('index.html')
+    try:
+        if session['user'] != None:
+            return render_template('index.html',status=1)
+        else:
+            return render_template('index.html',status=0)
+    except:
+        session['user'] = None
+        return render_template('index.html',status=0)
 # here we define the home route
 # aqui definimos a rota da pagina inicial
 @app.route('/home')
@@ -75,8 +81,15 @@ def home():
 # aqui definimos a rota do perfil do usuário
 @app.route('/profile')
 def profile(): 
-    newlogin = User.query.get(session['user'])
-    return render_template('views/profile.html',usersession = newlogin)
+    try:
+        if session['user'] != None:
+            newlogin = User.query.get(session['user'])
+            return render_template('views/profile.html',usersession = newlogin)
+        else:
+            return redirect('/home')
+    except:
+        session['user'] = None
+        return redirect('/home')
 # importa pagina principal
 # import home page
 @app.route('/registeruser')
@@ -118,7 +131,16 @@ def newpet():
 # aqui nos definimos a rota para a pagina de mensagem sobre o registro animais de estimação
 @app.route('/jobs')
 def jobs():
-    return render_template('views/jobs.html')
+    try:
+        if session['user'] != None:
+            newlogin = User.query.get(session['user'])
+            return render_template('views/jobs.html')
+        else:
+            return redirect('/home')
+    except:
+        session['user'] = None
+        return redirect('/home')
+    
 # here we define a route for the login page
 # aqui nós definimos uma rota para a pagina de login
 @app.route('/login',methods=['GET','POST'])
@@ -201,6 +223,6 @@ def insert(value):
     
 # the function here start de app 
 # aqui a função inicia o aplicativo
-if __name__ == '__main__':   
+if __name__ == '__main__':  
     db.create_all()
     app.run(debug=True)

@@ -17,3 +17,8 @@ function liaveFunction(value){
 function clickFunction(value){
     document.getElementById("internalPage").src=value;
 }
+// here redirect page when the user has loged
+// aqui redireciona a pagina quando o usuŕio está logado
+function redirectIframe(){
+    document.getElementById('internalPage').src="/profile";
+}

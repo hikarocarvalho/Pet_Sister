@@ -61,6 +61,7 @@ body header ul a{
     margin: 0;
     margin-right: 20px;  
     color: #2B3240; 
+    cursor: pointer;
 }
 body header ul a:hover{
     text-shadow:5px 5px 20px #1b1c1d;

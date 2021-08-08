@@ -13,7 +13,11 @@
 -->
         <script src="{{ url_for('static', filename='js/hover.js') }}"></script>
     </head>
-    <body >
+    {% if status == 1: %}
+    <body onload="redirectIframe()">
+    {% else: %}
+    <body>
+    {% endif %}
         <header>
             <main>
 
