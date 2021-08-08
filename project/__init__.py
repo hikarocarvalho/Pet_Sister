@@ -60,14 +60,19 @@ class User(db.Model):
     #     self.qualification = qualification
     #     self.recomendation = recomendation
 #
-
+# here we define the index route
+# aqui definimos a rota do index
 @app.route('/')
 def index(): 
     session['user'] = None
     return render_template('index.html')
+# here we define the home route
+# aqui definimos a rota da pagina inicial
 @app.route('/home')
 def home(): 
     return render_template('views/home.html')
+# here we define the profile route
+# aqui definimos a rota do perfil do usuário
 @app.route('/profile')
 def profile(): 
     newlogin = User.query.get(session['user'])
@@ -77,9 +82,13 @@ def profile():
 @app.route('/registeruser')
 def registeruser():
     return render_template('registeruser.html')
+# here we define the route for register pet
+# aqui definimos a rota para o registro do animal de estimação
 @app.route('/registerpet')
 def registerpet():
     return render_template('registerpet.html')
+# here we define he route for register pet script
+# aqui nós definimos a rota para o script de registro de animais de estimação
 @app.route('/registerusermessage',methods=['GET','POST'])
 def newuser():
     message = ""
@@ -93,12 +102,18 @@ def newuser():
             newUser.password = str(request.form.get('input_password'))
             insert(newUser)
     return render_template('response/sucess.html',message = "You are our new user!")
+# here we define a route to page where shows a message about user registration
+# aqui nos definimos a rota para a pagina de mensagem sobre o registro de usuário
 @app.route('/registerpetmessage',methods=['GET','POST'])
 def newpet():
     return redirect('/perfiluser')
+# here we define a route to page where shows a message about pet registration
+# aqui nos definimos a rota para a pagina de mensagem sobre o registro animais de estimação
 @app.route('/jobs')
 def jobs():
     return render_template('views/jobs.html')
+# here we define a route for the login page
+# aqui nós definimos uma rota para a pagina de login
 @app.route('/login',methods=['GET','POST'])
 def login():
     email =str(request.form.get('input_email'))
@@ -110,12 +125,14 @@ def login():
                 session['user']=i.id 
                 app.secret_key = i.password
                 return render_template('response/sucess.html',message = "you are loging!")
+# here we define a route for logout user
+# aqui nós definimos uma rota para deslogar o usuário
 @app.route('/loginout')
 def loginout():
     session['user'] = None
     return redirect('/home')
-
-    
+# here we define a route for the update user values
+# aqui nós definimos uma rota para atualizar os valores do usuário
 @app.route('/updateuser',methods=['GET','POST'])
 def updateuser():
     newupdate = User.query.get(session['user'])
@@ -134,15 +151,18 @@ def updateuser():
     update("sucess!")
     return render_template('response/sucess.html',message = "sucess!")
 # here we send delete request
+# aqui nós enviamos o pedido de esclusão ao banco
 def delete(value,message = "sucess!"):
     db.session.delete(value)
     db.session.commit()
     return render_template('response/sucess.html',message = message)
 # here we send update request
+# aqui enviamos o pedido de atualização dos dados
 def update(message = "sucess!"):
     db.session.commit()
     return render_template('response/sucess.html',message = message)
-# here we put a new datavalue
+# here we add a new datavalue
+# aqui nós adicionamos um novo valor no banco
 def insert(value):
     db.session.add(value)
     db.session.commit()
