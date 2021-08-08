@@ -37,22 +37,24 @@ body .perfilphoto main{
 body .perfilphoto article{
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
     color: #2B3240;
     margin-top: 10%;
-    width: 50%;
-    height: 20px;
+    width: 70%;
+    height: 100%;
 }
 body .perfilphoto article label{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-body .perfilphoto article label a{
+    text-align: center;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+body .perfilphoto article label a{
+    
     text-decoration: none;
+    text-align: center;
     padding: 0;
     width: 100%;
     background-color: #2B3240;

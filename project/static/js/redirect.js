@@ -3,5 +3,5 @@
 function load(location){
     setTimeout(function() {
         window.location.href = location;}
-        ,5000);
+        ,2000);
 }

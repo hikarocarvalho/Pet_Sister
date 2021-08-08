@@ -62,3 +62,17 @@ function enable(){
     }
     
 }
+function load(){
+    var teste = inputEmail.value;
+    if(teste.length > 0 && teste.includes("@") && teste.includes(".com")){
+        inputEmail.style.borderColor="#00FF00";
+        validate[0] = true;
+        enable();
+    }
+    teste = inputPass.value;
+    if(teste.length > 0){
+        inputPass.style.borderColor="#00FF00";
+        validate[1] = true;
+        enable();
+    }
+}

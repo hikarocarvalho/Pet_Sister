@@ -140,7 +140,6 @@ def jobs():
     except:
         session['user'] = None
         return redirect('/home')
-    
 # here we define a route for the login page
 # aqui nós definimos uma rota para a pagina de login
 @app.route('/login',methods=['GET','POST'])
