@@ -1,0 +1,25 @@
+body{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+body article{
+    width: 25%;
+    height: 25%;
+    background-color: #2B3240;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: bolder;
+    color: #F2BF80;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}

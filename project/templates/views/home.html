@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>
+            HOME
+        </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+        <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+    </header>
+    <body>
+        <section id="about" class="about">
+            <header>
+                Pet Sisters
+            </header>
+            <article>
+                We start the production of this web system, 
+                to make it easier for one person who has one little buddy.
+                Who depends on him, search for someone to help him don't live your little buddy alone.
+
+            </article>
+        </section>
+        <section id="login" class="login">
+            <form method="POST" action="/login">
+                <label for="input_email">User</label>
+                <input type="text" name="input_email" id="input_email">
+                <label for="input_password">Password</label>
+                <input type="password" name="input_password" id="input_password">
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    </body>
+</html>

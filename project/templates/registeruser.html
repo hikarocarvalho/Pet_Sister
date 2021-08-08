@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}">
+        <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
+    </head>
+    <body>
+        
+        <form method="POST" action="/registerusermessage">
+            <fieldset class="other">
+                <legend>
+                    User Data
+                </legend>
+                <label for="input_name">name</label>
+                <input type="text" name="input_name" id="input_name">
+                <label for="input_birthday">birthday</label>
+                <input type="date" name="input_birthday" id="input_birthday">
+                <label for="input_identity_number">identity number</label>
+                <input type="number" name="input_identity_number" id="input_identity_number">
+                <label for="input_addreess_other">address</label>
+                <input type="text" name="input_addreess_other" id="input_addreess_other">
+            </fieldset>
+            <fieldset class="other">
+                <legend>
+                    Login Data
+                </legend>
+                <label for="input_email">email</label>
+                <input type="text" name="input_email" id="input_email">
+                <label for="input_password">Password</label>
+                <input type="password" name="input_password" id="input_password">
+                <label for="input_password_repeat">Repeat Your Password</label>
+                <input type="password" name="input_password_repeat" id="input_password_repeat">
+            </fieldset>
+            
+            
+            <button id="send" class="button" type="submit" disabled>Enviar</button>
+        </form>
+        
+    </body>
+</html>

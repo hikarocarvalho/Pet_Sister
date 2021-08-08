@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+        <script src="{{ url_for('static', filename='js/hover.js') }}"></script>
+    </head>
+    <body >
+        <header>
+            <main>
+                <img src="{{ url_for('static', filename='img/download.png') }}"></img>
+            </main>
+            <nav>
+                <ul>
+                    <div class="img" id="img1">
+                    </div>
+                    <a onclick="clickFunction('/jobs')" onmouseleave="liaveFunction(1)" onmouseover="hoverFuncion(1)" id="link1"><li>JOBS</li></a>
+                    <hr>
+                    <div class="img"  id="img2">
+                    </div>
+                    <a  onclick="clickFunction('/profile')" onmouseleave="liaveFunction(2)" onmouseover="hoverFuncion(2)" id="link2"><li>PERFIL</li></a>
+                    <hr>
+                    <div class="img" id="img3">
+                    </div>
+                    <a  onclick="clickFunction('/registeruser')" onmouseleave="liaveFunction(3)" onmouseover="hoverFuncion(3)" id="link3"><li>REGISTER</li></a>
+                    <hr>
+                    <div class="img" id="img4">
+                    </div>
+                    <a  onclick="clickFunction('/home')" onmouseleave="liaveFunction(4)" onmouseover="hoverFuncion(4)" id="link4"><li>LOGIN</li></a>
+                    <hr>
+                    <div class="img" id="img5">
+                    </div>
+                    <a  onclick="clickFunction('/loginout')" onmouseleave="liaveFunction(5)" onmouseover="hoverFuncion(5)" id="link4"><li>LOGOUT</li></a>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <iframe src="/home" id="internalPage"></iframe>
+        </section>
+        <aside>
+
+        </aside>
+        <footer>
+
+        </footer>
+       
+    </body>
+</html>

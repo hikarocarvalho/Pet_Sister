@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobs.css') }}">
+    </head>
+    <body>
+        {% for i in range(100) %}
+        <section id="job" class="job">
+            <header>
+                <img src="{{ url_for('static', filename='img/dog.png') }}">
+            </header>
+            <article>
+                job person
+            </article>
+        </section>
+        {% endfor %}
+    </body>
+</html>

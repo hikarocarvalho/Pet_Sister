@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+    </head>
+    <body >
+        <header id="perfilphoto" class="perfilphoto">
+            <main>
+                <img src="{{ url_for('static', filename='img/defaultphoto.png') }}"></img>
+            </main>
+            <article>
+                <label>
+                    name
+                </label>
+            </article>
+        </header>
+        <section id="perfildescription" class="perfildescription">
+            <article>
+                <form method="POST" action="/updateuser">
+                    <fieldset>
+                        <legend>Personal Data</legend>
+                        <label>{{usersession.name}}</label>
+                        <input type="text" name="input_name" value="{{usersession.name}}">
+                        <label>identity number</label>
+                        <input type="number" name="input_identity_number" value="{{usersession.identity_number}}">
+                        <label>birthday</label>
+                        <input type="date" name="input_birthday" value="{{usersession.birthday}}">
+                        <label>email</label>
+                        <input type="text" name="input_email" value="{{usersession.email}}">
+                        <label>password</label>
+                        <input type="password" name="input_password" value="{{usersession.password}}">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Adress Data</legend>
+                        <label>street</label>
+                        <input type="text" name="input_street" value="{{ usersession.street }}">
+                        <label>block</label>
+                        <input type="text" name="input_block" value="{{ usersession.block }}">
+                        <label>batch</label>
+                        <input type="text" name="input_batch" value="{{ usersession.batch }}">
+                    </fieldset>
+                    <fieldset>
+                        <label>post code</label>
+                        <input type="number" name="input_post_code" value="{{ usersession.post_code }}">
+                        <label>address</label>
+                        <input type="text" name="input_address_other" value="{{ usersession.address_other }}">
+                    </fieldset>
+                    <fieldset class="choice">
+                        <label>Qualification</label>
+                        <textarea name="input_qualification">{{ usersession.qualification }}</textarea>
+                        <label>Recomendation</label>
+                        <textarea name="input_recomandation">{{ usersession.recomendation }}</textarea>
+                    </fieldset>
+                    <fieldset>
+                        <button id="send" class="button" type="submit">Save</button>
+                    
+                </form>
+                        <fieldset>
+                            <legend>Pets</legend>
+                            <a href="">
+                                <div id="newpet" class="newpet">
+                                +
+                                </div>
+                            </a>
+                           
+                        </fieldset>
+                    </fieldset>
+                
+            </article>
+        </section>
+       
+    </body>
+</html>
