@@ -2,9 +2,17 @@
 <html>
     <head>
         <title></title>
+<!-- 
+        here we define css file
+        aqui nós definimos o arquivo class
+-->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jobs.css') }}">
     </head>
     <body>
+<!--
+        here we show all jobs for users
+        aqui nós mostramos todos os trabalhos para os usuários
+-->
         {% for i in range(100) %}
         <section id="job" class="job">
             <header>

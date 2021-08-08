@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+<!--  
+        defined css archive
+        deinido arquivo css 
+-->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}">
+<!-- 
+        defined javascript archive
+        definido arquivo javascript 
+-->
         <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
     </head>
     <body>
-        
+<!--
+        here we create the form to make a register from a new user
+        aqui nós criamos um formulário para registrar um novo usuário
+-->        
         <form method="POST" action="/registerusermessage">
             <fieldset class="other">
+<!--
+                here the user put the personal information from himself
+                aqui o usuário coloca as informações pessoais dele mesmo
+-->
                 <legend>
                     User Data
                 </legend>
@@ -20,6 +35,10 @@
                 <label for="input_addreess_other">address</label>
                 <input type="text" name="input_addreess_other" id="input_addreess_other">
             </fieldset>
+<!--
+                here the user put the login information for himself
+                aqui o usuário coloca as informações de login para ele mesmo
+-->
             <fieldset class="other">
                 <legend>
                     Login Data

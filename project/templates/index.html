@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+<!--  
+        defined css archive
+        deinido arquivo css 
+-->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+
+<!-- 
+        defined javascript archive
+        definido arquivo javascript 
+-->
         <script src="{{ url_for('static', filename='js/hover.js') }}"></script>
     </head>
     <body >
         <header>
             <main>
+
+<!--
+                here we put the logotype from our sistem
+                aqui nós colocamos o logotipo para nosso sistema
+-->
                 <img src="{{ url_for('static', filename='img/download.png') }}"></img>
             </main>
+<!--
+                here we create a menu to our sistem
+                aqui nós criamos um menu para nosso sistema
+-->
             <nav>
                 <ul>
                     <div class="img" id="img1">
@@ -34,11 +52,15 @@
             </nav>
         </header>
         <section>
+<!--
+            here we create one iframe to alocate all pages
+            aqui nós criamos um iframe para alocar todas as paginas
+-->
             <iframe src="/home" id="internalPage"></iframe>
         </section>
         <aside>
 
-        </aside>
+        </aside> 
         <footer>
 
         </footer>
