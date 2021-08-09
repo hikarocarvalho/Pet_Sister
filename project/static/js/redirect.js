@@ -2,6 +2,8 @@
 // aqui está a função para fazer o redirecionamento quando o usuário faz login
 function load(location){
     setTimeout(function() {
-        window.location.href = location;}
+        window.location.href = location;
+        parent.location.reload();}
         ,2000);
+        
 }

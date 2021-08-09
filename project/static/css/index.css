@@ -69,6 +69,7 @@ body header ul a:hover{
 }
 body header main img{
     height: 100%;
+    cursor: pointer;
 }
 body header main{
     display: flex;

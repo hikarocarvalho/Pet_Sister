@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sucess.css') }}">
-        
+        <script src="{{ url_for('static', filename='js/redirect.js') }}" defer></script>
     </head>
     
     <body  onload="load('{{location}}')">
@@ -11,6 +11,6 @@
             <label>{{message}}</label>
             
         </article>
-        <script src="{{ url_for('static', filename='js/redirect.js') }}"></script>
+       
     </body>
 </html>

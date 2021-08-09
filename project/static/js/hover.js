@@ -15,10 +15,11 @@ function liaveFunction(value){
 // here is the function to set the image in a selected item
 // aqui está a funçãp que seta a imagem para o item selecionado
 function clickFunction(value){
-    document.getElementById("internalPage").src=value;
+    document.getElementById("iframe").src=value;
 }
 // here redirect page when the user has loged
 // aqui redireciona a pagina quando o usuŕio está logado
 function redirectIframe(){
-    document.getElementById('internalPage').src="/profile";
+    document.getElementById('iframe').src="/profile";
 }
+

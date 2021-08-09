@@ -12,6 +12,7 @@
         definido arquivo javascript 
 -->
         <script src="{{ url_for('static', filename='js/hover.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/navmenu.js') }}" defer></script>
     </head>
     {% if status == 1: %}
     <body onload="redirectIframe()">
@@ -25,29 +26,29 @@
                 here we put the logotype from our sistem
                 aqui nós colocamos o logotipo para nosso sistema
 -->
-                <img src="{{ url_for('static', filename='img/download.png') }}"></img>
+                <img id="logo" src="{{ url_for('static', filename='img/download.png') }}"></img>
             </main>
 <!--
                 here we create a menu to our sistem
                 aqui nós criamos um menu para nosso sistema
 -->
-            <nav>
+            <nav id="menu">
                 <ul>
                     <div class="img" id="img1">
                     </div>
                     <a onclick="clickFunction('/jobs')" onmouseleave="liaveFunction(1)" onmouseover="hoverFuncion(1)" id="link1"><li>JOBS</li></a>
-                    <hr>
+                    <hr id="2">
                     <div class="img"  id="img2">
                     </div>
                     <a  onclick="clickFunction('/profile')" onmouseleave="liaveFunction(2)" onmouseover="hoverFuncion(2)" id="link2"><li>PERFIL</li></a>
-                    <hr>
+                    <hr id="3">
                     <div class="img" id="img3">
                     </div>
                     <a  onclick="clickFunction('/registeruser')" onmouseleave="liaveFunction(3)" onmouseover="hoverFuncion(3)" id="link3"><li>REGISTER</li></a>
-                    <hr>
+                    <hr id="4">
                     <div class="img" id="img4">
                     </div>
-                    <a  onclick="clickFunction('/loginout')" onmouseleave="liaveFunction(4)" onmouseover="hoverFuncion(4)" id="link4"><li>LOGOUT</li></a>
+                    <a  onclick="clickFunction('/loginout')" onclick="changeMenu()" onmouseleave="liaveFunction(4)" onmouseover="hoverFuncion(4)" id="link4"><li>LOGOUT</li></a>
 
                 </ul>
             </nav>
@@ -57,7 +58,7 @@
             here we create one iframe to alocate all pages
             aqui nós criamos um iframe para alocar todas as paginas
 -->
-            <iframe src="/home" id="internalPage"></iframe>
+            <iframe src="/home" id="iframe" onload="changeMenu()"></iframe>
         </section>
         <aside>
 

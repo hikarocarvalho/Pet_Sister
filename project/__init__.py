@@ -116,12 +116,13 @@ def newuser():
             newUser.password = str(request.form.get('input_password'))
             if insert(newUser):
                 loged(newUser.email, newUser.password)
+                location = "/profile"
                 message = "You are our new user!"
             else:
                 message = "Existing Account"
                 location = "/registeruser"
     
-    return render_template('response/sucess.html',message = message,location=lotation)
+    return render_template('response/sucess.html',message = message,location=location)
 # here we define a route to page where shows a message about user registration
 # aqui nos definimos a rota para a pagina de mensagem sobre o registro de usuário
 @app.route('/registerpetmessage',methods=['GET','POST'])
@@ -159,7 +160,7 @@ def login():
 @app.route('/loginout')
 def loginout():
     session['user'] = None
-    return redirect('/home')
+    return render_template('response/sucess.html',message = "You has been login out, sucess!",location="/home")
 # here we define a route for the update user values
 # aqui nós definimos uma rota para atualizar os valores do usuário
 @app.route('/updateuser',methods=['GET','POST'])
@@ -184,6 +185,7 @@ def updateuser():
 @app.route('/remove/<id>')
 def remove(id):
     userRemove = User.query.get(id)
+    session['user'] = None
     delete(userRemove)
     return render_template('response/sucess.html',message = "user has been deleted",location="/home")
 # here we setup loged user
