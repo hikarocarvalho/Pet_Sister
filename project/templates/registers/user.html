@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+<!--  
+        defined css archive
+        deinido arquivo css 
+-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register.css') }}">
+<!-- 
+        defined javascript archive
+        definido arquivo javascript 
+-->
+        <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
     </head>
     <body>
-        <form>
-            <!-- here start the form to get all data values from a new user -->
-            <!-- Aqui começa o formulario para pegar os dados do novo usuario -->
-            <section id="client_register" class="client_register">
-                <!-- here we get all personal data from a new users -->
-                <!-- aqui nós pegamos todos os novos dados do novo usuário -->
-                <fieldset>
-                    <legend>{{ personal }}</legend>
-                    <label for="name">{{ name }}</label>
-                    <input name="input_name" type="text" class="name" id="name" required="required">
-                    <label for="last_name">{{ last_name }}</label>
-                    <input name="input_last_name" type="text" class="last_name" id="last_name" required="required">
-                </fieldset>
-                <!-- here we put one choice to our new user, where he can choice, if he go trey one job or offer a job -->
-                <!-- aqui nos colocamos uma escolha onde o novo usuario poderá escolher entre ser empregador ou prestador de serviço -->
-                <fieldset>
-                    <legend> {{ choice }}</legend>
-                    <label for="choice1">{{ worker }}</label>
-                    <input type="radio" class="choice1" id="choice1" required="required" name="choice" value="worker">
-                    <label for="choice2">{{ client }}</label>
-                    <input type="radio" class="choice2" id="choice2" required="required" name="choice" value="Client">
-                </fieldset>
-                <!-- here we get all data values from new user about' her 'ore' his' contact -->
-                <!-- aqui nos pegados os dados do novo usuário sobre formas de contacta-lo -->
-                <fieldset>
-                    <legend>{{ contact }}</legend>
-                    <label for="mail">{{ mail_adress }}</label>
-                    <input name="input_mail" type="text" class="mail" id="mail" required="required">
-                    <label for="phone">{{ phone }}</label>
-                    <input name="input_tellphone_number" type="number" class="phone" id="phone" required="required">
-                </fieldset>
-                <!-- here we get all data values from new user about your fisical address -->
-                <!-- aqui nós pegados todos os valores do usário sobre seu endereço fisico -->
-                <fieldset>
-                    <legend>{{ location }}</legend>
-                    <label for="address">{{ adress }}</label>
-                    <input name="input_address" type="text" class="address" id="address" required="required">
-                    <label for="post">{{ code_post }}</label>
-                    <input name="input_code_post" type="number" class="post" id="post" required="required">
-                </fieldset>
-                <!-- here we put the button to send the information for the register process -->
-                <!-- aqui nós colocamos o botão para realizar o envidos dos dados para cadastro -->
-                <fieldset>
-                    <button id="button_register" class="button_register">{{ button_register }}</button>
-                </fieldset>
-            </section>
-        </body>
+<!--
+        here we create the form to make a register from a new user
+        aqui nós criamos um formulário para registrar um novo usuário
+-->        
+        <form method="POST" action="/registerusermessage">
+            <fieldset class="other">
+<!--
+                here the user put the personal information from himself
+                aqui o usuário coloca as informações pessoais dele mesmo
+-->
+                <legend>
+                    User Data
+                </legend>
+                <label for="input_name">name</label>
+                <input type="text" name="input_name" id="input_name">
+                <label for="input_birthday">birthday</label>
+                <input type="date" name="input_birthday" id="input_birthday">
+                <label for="input_identity_number">identity number</label>
+                <input type="number" name="input_identity_number" id="input_identity_number">
+                <label for="input_addreess_other">address</label>
+                <input type="text" name="input_addreess_other" id="input_addreess_other">
+            </fieldset>
+<!--
+                here the user put the login information for himself
+                aqui o usuário coloca as informações de login para ele mesmo
+-->
+            <fieldset class="other">
+                <legend>
+                    Login Data
+                </legend>
+                <label for="input_email">email</label>
+                <input type="text" name="input_email" id="input_email">
+                <label for="input_password">Password</label>
+                <input type="password" name="input_password" id="input_password">
+                <label for="input_password_repeat">Repeat Your Password</label>
+                <input type="password" name="input_password_repeat" id="input_password_repeat">
+            </fieldset>
+            
+            
+            <button id="send" class="button" type="submit" disabled>Enviar</button>
+        </form>
+        
     </body>
 </html>

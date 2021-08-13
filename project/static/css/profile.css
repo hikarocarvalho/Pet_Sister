@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     
-    padding-top: 3%;
+    padding-top: 1%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -18,7 +18,7 @@ body .perfilphoto, body .perfildescription{
     justify-content: flex-start;
     margin: 0;
     padding: 0;
-    height: 90%;
+    height: 100%;
     border-radius: 20px;
     box-shadow:5px 5px 5px #2B3240;
 }
@@ -31,7 +31,7 @@ body .perfilphoto{
    
 }
 body .perfilphoto main{
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: white;
     border-radius: 50%;
     width: 60%;
@@ -43,7 +43,7 @@ body .perfilphoto article{
     flex-direction: column;
     align-items: center;
     color: #2B3240;
-    margin-top: 10%;
+    margin-top: 5%;
     width: 70%;
     height: 100%;
 }
@@ -128,6 +128,7 @@ form fieldset input{
     height: 20px;
 }
 form fieldset button{
+    margin-top: 2%;
     height: 30px;
     width: 100%;
     background-color: #2B3240;
@@ -141,24 +142,81 @@ form fieldset button:hover{
 form fieldset input:focus{
     outline: 0;
 }
-
-fieldset fieldset{
+form .pets{
+    max-width: 48%;
+    max-height: 35% ;
+}
+.pets .pet_container{
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
+    overflow-y: scroll;
 }
 
-body .perfildescription article fieldset fieldset a{
+::-webkit-scrollbar {
+    width: 5px;  
+  }
+  ::-webkit-scrollbar-track {
+    background: #555;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2B3240;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+body .perfildescription article fieldset .pet_container .pet{
     text-decoration: none;
     color:#2B3240;
-    margin: 5%;
     margin: 2%;
     font-size: 5em;
     font-weight: bolder;
     padding: 5%;
-    width: 1.5em;
+    width: 35%;
     text-align: center;
     border-radius: 20px;
     background-color: #F2994B;
+}
+.box-cad-pet{
+    
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0,0.3);
+    margin: 0;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.box-cad-pet iframe{
+    border: none;
+    display: flex;
+    width: 100%;  
+    height: 100%; 
+}
+.newpet{
+    cursor: pointer;
+}
+.box-cad-pet button{
+    position: absolute;
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    right: 42%;
+    background-color: #2B3240;
+    border: none;
+    color: #F2994B;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: large;
 }

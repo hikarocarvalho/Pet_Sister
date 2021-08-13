@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, send_file, url_for, session
+import os
+from flask import Flask, render_template, request, redirect, send_file, url_for, session, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 from datetime import datetime,date
 # here we set all app configs
 # aqui configuramos o app
 
 app = Flask(__name__) 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://xhvtplqn:ESYFvQFVgh8m1YLRbT4MZ_c3DqrD_S5b@tuffi.db.elephantsql.com/xhvtplqn'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/siter'
 db = SQLAlchemy(app)
 app.secret_key ="123456"
 # here we create a class for pet object
@@ -14,10 +16,9 @@ class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50), nullable=False)
     age = db.Column(db.Integer, nullable=False)
-    color = db.Column(db.String(50), nullable=False)
     weight = db.Column(db.Float, nullable=False)
-    breed = db.Column(db.String(50), nullable=False)
-    food = db.Column(db.String(150), nullable=False)
+    size = db.Column(db.Float, nullable=False)
+    photopet = db.Column(db.String(50), nullable=True)
     medication = db.Column(db.String(150), nullable=True)
     petowner_id = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
@@ -94,12 +95,12 @@ def profile():
 # import home page
 @app.route('/registeruser')
 def registeruser():
-    return render_template('registeruser.html')
+    return render_template('registers/user.html')
 # here we define the route for register pet
 # aqui definimos a rota para o registro do animal de estimação
 @app.route('/registerpet')
 def registerpet():
-    return render_template('registerpet.html')
+    return render_template('registers/pet.html')
 # here we define he route for register pet script
 # aqui nós definimos a rota para o script de registro de animais de estimação
 @app.route('/registerusermessage',methods=['GET','POST'])
@@ -127,7 +128,30 @@ def newuser():
 # aqui nos definimos a rota para a pagina de mensagem sobre o registro de usuário
 @app.route('/registerpetmessage',methods=['GET','POST'])
 def newpet():
-    return redirect('/perfiluser')
+    message = ""
+    location = "/profile"
+    if request.method == "POST":
+        if request.form.get('input_password') == request.form.get('input_password_repeat'):
+            newPet = Pet()
+            newPet.name = str(request.form.get('input_name'))
+            newPet.age = request.form.get('input_age')
+            newPet.weight = int(request.form.get('input_weight'))
+            newPet.size = str(request.form.get('input_size'))
+            newPet.medication = str(request.form.get('input_medicine'))
+            newPet.petowner_id = session['user']
+            if request.files['photopet'].filename != "":
+                newPet.photopet = request.files['photopet'].filename
+                file = request.files['photopet']
+                filename = secure_filename(file.filename)
+                
+                file.save('flaskr/static/img/photospet',filename)
+            else:
+                newPet.photopet = "defaultpet.png"
+            db.session.add(newPet)
+            db.session.commit()
+            message = "You have a new pet!"
+    
+    return render_template('response/sucess.html',message = message,location=location)
 # here we define a route to page where shows a message about pet registration
 # aqui nos definimos a rota para a pagina de mensagem sobre o registro animais de estimação
 @app.route('/jobs')
@@ -145,6 +169,7 @@ def jobs():
 # aqui nós definimos uma rota para a pagina de login
 @app.route('/login',methods=['GET','POST'])
 def login():
+    
     email =str(request.form.get('input_email'))
     password = str(request.form.get('input_password'))
     message = ""
@@ -193,10 +218,10 @@ def remove(id):
 def loged(email,password):
     newlogin = User.query.all()
     for i in newlogin:
-            if i.password == password and i.email == email:
-                session['user']=i.id 
-                app.secret_key = i.password
-                return True
+        if i.password == password and i.email == email:
+            session['user']=i.id 
+            app.secret_key = i.password
+            return True
     return False
 
 # here we send delete request
@@ -220,8 +245,23 @@ def insert(value):
     db.session.add(value)
     db.session.commit()
     return True
-
-    
+# get all pet from user
+# pega todos os petes do usuário
+def getAllPets():
+    session['user'] 
+    pets = userRemove = Pet.query.filter_by(petowner_id=session['user']).first_or_404()
+    return pets
+# get photo and save
+# pega a foto e salva
+def photoPet(file):
+        # if user does not select file, browser also
+        # submit a empty part without filename
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    else:
+        filename = secure_filename(file.filename)
+        file.save(os.path.join("/static/img/photospet", filename))
 # the function here start de app 
 # aqui a função inicia o aplicativo
 if __name__ == '__main__':  

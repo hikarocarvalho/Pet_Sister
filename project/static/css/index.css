@@ -96,3 +96,16 @@ body section iframe{
     height: 100%;
     border:none;
 }
+::-webkit-scrollbar {
+    width: 5px;  
+  }
+  ::-webkit-scrollbar-track {
+    background: #555;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2B3240;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

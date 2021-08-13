@@ -7,6 +7,7 @@
         aqui nós setamos o arquivo css 
 -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+        <script src="{{ url_for('static', filename='js/action.js') }}" defer></script>
     </head>
     <body >
 <!--         
@@ -81,27 +82,40 @@
                         <textarea name="input_qualification">{{ usersession.qualification }}</textarea>
                         <label>Recomendation</label>
                         <textarea name="input_recomandation">{{ usersession.recomendation }}</textarea>
-                    </fieldset>
-                    <fieldset>
                         <button id="send" class="button" type="submit">Save</button>
-                </form>
+                    </fieldset>
+                    <fieldset class="pets">
+                        
+               
 <!-- 
                     here start the pets manager area
                      aqui inicia a area de gerenciamento de animais de estimação
 -->
-                        <fieldset>
+                        <fieldset class="pet_container">
                             <legend>Pets</legend>
-                            <a href="">
-                                <div id="newpet" class="newpet">
-                                +
-                                </div>
-                            </a>
-                           
+                                {% for i in pets: %}
+                                    <a href="/registerpet/{{i.id}}" class="pet">
+                                        <div id="newpet" class="newpet">
+                                            <img src="{{ url_for('static', filename='img/photospet/'+ i.photopet +'') }}{{i.photopet}}">
+                                            <label>{{i.name}}</label>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                                <a id="cadpet" class="pet">
+                                    <div id="newpet" class="newpet">
+                                    +
+                                    </div>
+                                </a>
+                                
+                                                       
                         </fieldset>
                     </fieldset>
-                
+                </form>
             </article>
         </section>
-       
+        <section id="box-cad-pet" class="box-cad-pet">
+            <button id="close">X</button>
+            <iframe src="/registerpet"></iframe>
+        </section>
     </body>
 </html>

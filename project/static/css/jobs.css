@@ -37,3 +37,16 @@ body .job header img{
     display: flex;
     width: 70%;
 }
+::-webkit-scrollbar {
+    width: 7px;  
+    
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background: #555;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #F2994B;
+    border-radius: 10px;
+  }
+  
