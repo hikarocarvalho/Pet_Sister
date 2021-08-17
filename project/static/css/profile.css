@@ -1,0 +1,222 @@
+body{
+    margin: 0;
+    padding: 0;
+    
+    padding-top: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    
+}
+body .perfilphoto, body .perfildescription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow:5px 5px 5px #2B3240;
+}
+body .perfilphoto{
+    
+    background-color: #F2BF80;
+    width: 15%;
+    margin-right: 6%;
+    max-height: 50vh;
+   
+}
+body .perfilphoto main{
+    margin-top: 5%;
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    border: 10px solid #F2994B;
+
+}
+body .perfilphoto article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #2B3240;
+    margin-top: 5%;
+    width: 70%;
+    height: 100%;
+}
+body .perfilphoto article label{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+body .perfilphoto article label a{
+    
+    text-decoration: none;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    background-color: #2B3240;
+    color:#F2994B;
+    border-radius: 10px;
+}
+body .perfilphoto article label a:hover{
+    background-color: #4b5463;
+}
+body .perfilphoto article label{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+body .perfilphoto main img{
+    display: flex;
+    width: 100%;
+
+}
+body .perfildescription{
+    justify-self: center;
+    display: flex;
+    width: 65%;
+    background-color: #F2BF80;
+}
+body .perfildescription article{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+body .perfildescription article form{
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-flow: column wrap;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    margin: 0;
+    color:#2B3240;
+}
+form fieldset{
+    max-width: 100%;
+    min-width: 45%;
+    display: flex;
+    flex-direction: column;
+    border:none;
+    margin:0;
+}
+form .choice{
+    display: flex;
+    min-width: 45%;
+    max-width: 100%;
+    border: none;
+    flex-direction: column;
+    margin: 0;
+}
+form .choice textarea{
+    width: 100%;
+}
+form fieldset input{
+    border: 5px solid #F2994B;
+    border-radius: 10px;
+    height: 20px;
+}
+form fieldset button{
+    margin-top: 2%;
+    height: 30px;
+    width: 100%;
+    background-color: #2B3240;
+    border: transparent;
+    border-radius: 10px;
+    color: #F2994B;
+}
+form fieldset button:hover{
+    background-color: #4b5463;
+}
+form fieldset input:focus{
+    outline: 0;
+}
+form .pets{
+    max-width: 48%;
+    max-height: 35% ;
+}
+.pets .pet_container{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 5px;  
+  }
+  ::-webkit-scrollbar-track {
+    background: #555;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2B3240;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+body .perfildescription article fieldset .pet_container .pet{
+    text-decoration: none;
+    color:#2B3240;
+    margin: 2%;
+    font-size: 5em;
+    font-weight: bolder;
+    padding: 5%;
+    width: 35%;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #F2994B;
+}
+.box-cad-pet{
+    
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0,0.3);
+    margin: 0;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.box-cad-pet iframe{
+    border: none;
+    display: flex;
+    width: 100%;  
+    height: 100%; 
+}
+.newpet{
+    cursor: pointer;
+}
+.box-cad-pet button{
+    position: absolute;
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    right: 42%;
+    background-color: #2B3240;
+    border: none;
+    color: #F2994B;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: large;
+}

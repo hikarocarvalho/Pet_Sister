@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body ,body .about , body .login {
+    margin: 0;
+    padding:0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+body .login form{
+    width: 90%;
+    font-weight: bolder;
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+body .login form input{
+    border: 5px solid #F2994B;
+    border-radius: 10px;
+    width: 90%;
+    height: 20px;
+    margin-bottom: 10%;
+}
+body .login form button{
+    width: 90%;
+    border: transparent;
+    background-color: #a1a1a1e8;
+    height: 40px;
+    border-radius: 10px;
+    color: #F2994B;
+}
+body .login form button:hover{
+    background-color: #4b5463;
+}
+body .about , body .login{
+    flex-direction: column;
+    background-color: #F2BF80;
+    width: 50%;
+    height: 65%;
+    color:#2B3240;
+    border-radius: 20px;
+    box-shadow:5px 5px 5px #2B3240;
+}
+body .about{
+    
+    font-family: 'Style Script', cursive;
+}
+body .about header{
+    font-size: 2.5em;
+    font-weight: bolder;
+    margin-bottom: 5%;
+    background-color: #F2994B;
+    border-radius: 10px;
+    padding: 2%;
+    width: 85%;
+    text-align: center;
+}
+body .about article{
+    padding: 2%;
+    background-color:#F2994B;
+    border-radius: 10px;
+    display: flex;
+    width: 85%;
+    font-size: 2em;
+    font-weight: bolder;
+}
+body .login{
+    margin-left: 6%;
+    width: 25%;
+    height: 50%;
+}
+form input:focus{
+    outline: 0;
+}
+body nav img{
+    width: 20px;
+    height: 100%;
+
+}

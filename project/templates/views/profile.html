@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+<!-- 
+        here we setup the css file
+        aqui nós setamos o arquivo css 
+-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+        <script src="{{ url_for('static', filename='js/action.js') }}" defer></script>
+    </head>
+    <body >
+<!--         
+        here we criate one section for resume about user perfil
+        aqui nos criamos uma seção para o resumo sobre o usuário 
+-->
+
+        <header id="perfilphoto" class="perfilphoto">
+            <main>
+                <img src="{{ url_for('static', filename='img/defaultphoto.png') }}"></img>
+            </main>
+            <article>
+                <label>
+                    {{usersession.name}}
+                </label>
+                <label>
+                    <a href="/remove/{{usersession.id}}">Remove Account</a>
+                </label>
+            </article>
+        </header>
+<!--         
+        here we put all informations about the user
+        aqui nós colocamos todas informações sobre o usuário 
+-->
+
+        <section id="perfildescription" class="perfildescription">
+            <article>
+                <form method="POST" action="/updateuser">
+<!-- 
+                    here are all personal information from an user
+                    aqui está todas informações pessoais do usuário 
+-->
+                    <fieldset>
+                        <legend>Personal Data</legend>
+                        <label>Name</label>
+                        <input type="text" name="input_name" value="{{usersession.name}}">
+                        <label>identity number</label>
+                        <input type="number" name="input_identity_number" value="{{usersession.identity_number}}">
+                        <label>birthday</label>
+                        <input type="date" name="input_birthday" value="{{usersession.birthday}}">
+                        <label>email</label>
+                        <input type="text" name="input_email" value="{{usersession.email}}">
+                        <label>password</label>
+                        <input type="password" name="input_password" value="{{usersession.password}}">
+                    </fieldset>
+<!-- 
+                    here are all adress information from an user
+                    aqui está todas informações de endereço do usuário 
+-->
+                    <fieldset>
+                        <legend>Adress Data</legend>
+                        <label>street</label>
+                        <input type="text" name="input_street" value="{{ usersession.street }}">
+                        <label>block</label>
+                        <input type="text" name="input_block" value="{{ usersession.block }}">
+                        <label>batch</label>
+                        <input type="text" name="input_batch" value="{{ usersession.batch }}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label>post code</label>
+                        <input type="number" name="input_post_code" value="{{ usersession.post_code }}">
+                        <label>address</label>
+                        <input type="text" name="input_address_other" value="{{ usersession.address_other }}">
+                    </fieldset>
+<!-- 
+                    here are all qualifiaction information from an user
+                    aqui está todas informações de qualificação do usuário 
+-->
+                    <fieldset class="choice">
+                        <label>Qualification</label>
+                        <textarea name="input_qualification">{{ usersession.qualification }}</textarea>
+                        <label>Recomendation</label>
+                        <textarea name="input_recomandation">{{ usersession.recomendation }}</textarea>
+                        <button id="send" class="button" type="submit">Save</button>
+                    </fieldset>
+                    <fieldset class="pets">
+                        
+               
+<!-- 
+                    here start the pets manager area
+                     aqui inicia a area de gerenciamento de animais de estimação
+-->
+                        <fieldset class="pet_container">
+                            <legend>Pets</legend>
+                                {% for i in pets: %}
+                                    <a href="/registerpet/{{i.id}}" class="pet">
+                                        <div id="newpet" class="newpet">
+                                            <img src="{{ url_for('static', filename='img/photospet/'+ i.photopet +'') }}{{i.photopet}}">
+                                            <label>{{i.name}}</label>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                                <a id="cadpet" class="pet">
+                                    <div id="newpet" class="newpet">
+                                    +
+                                    </div>
+                                </a>
+                                
+                                                       
+                        </fieldset>
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+        <section id="box-cad-pet" class="box-cad-pet">
+            <button id="close">X</button>
+            <iframe src="/registerpet"></iframe>
+        </section>
+    </body>
+</html>

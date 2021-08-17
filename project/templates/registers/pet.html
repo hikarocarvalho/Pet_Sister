@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pet.css') }}">
+    </head>
+    <body>
+        <form method="POST" action="/registerpetmessage" enctype="multipart/form-data">
+            <!-- here start the form to get all data values from a new user -->
+            <!-- Aqui começa o formulario para pegar os dados do novo usuario -->
+            <section id="pet_register" class="pet_register">
+                <!-- here we get all personal data from a new users -->
+                <!-- aqui nós pegamos todos os novos dados do novo usuário -->
+                <fieldset>
+                    <legend>Pet data</legend>
+                    <label for="name">name</label>
+                    <input name="input_name" type="text" class="name" id="name" required="required">
+                </fieldset>
+                <!-- here we get all health values from the pet -->
+                <!-- aqui nos pegamos todos dados sobre a saude do animal -->
+                <fieldset>
+                    <legend>Health data</legend>
+                    <label for="input_weight">Weight</label>
+                    <input name="input_weight" type="number" class="input_weight" id="input_weight" required="required">
+                    <label for="input_size">Size</label>
+                    <input name="input_size" type="number" class="sizepet" id="sizepet" required="required">
+                    <label for="input_age">Age</label>
+                    <input name="input_age" type="number" class="agepet" id="agepet" required="required">
+                    <label for="input_medicines">Medicines</label>
+                    <input name="input_medicines" type="text" class="medicines" id="medicines" required="required">
+                    <label for="photopet">Choose a profile picture:</label>
+                    <input type="file" id="photopet" name="photopet" accept="image/png, image/jpeg, image/jpg">
+                </fieldset>
+                <!-- here we put the button to send the information for the register process -->
+                <!-- aqui nós colocamos o botão para realizar o envidos dos dados para cadastro -->
+                <fieldset>
+                    <button id="button_register" class="button_register">Register Pet</button>
+                </fieldset>
+            </section>
+        </body>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <title>
+            HOME
+        </title>
+<!--  
+        defined css archive
+        deinido arquivo css 
+-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+<!-- 
+        defined javascript archive
+        definido arquivo javascript 
+-->
+        <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+    </header>
+    <body onload="load()">
+<!-- 
+        create a software description
+        criada a descrição so programa
+-->
+        <section id="about" class="about">
+            <header>
+                Pet Sisters
+            </header>
+            <article>
+                We start the production of this web system, 
+                to make it easier for one person who has one little buddy.
+                Who depends on him, search for someone to help him don't live your little buddy alone.
+
+            </article>
+        </section>
+<!--         
+        create a form for login
+        criado um formulário para login 
+-->
+
+        <section id="login" class="login">
+            <form method="POST" action="/login">
+<!-- 
+                here the client enter with an user registered email
+                aqui o cliente entra com seu email registrado 
+-->
+                <label for="input_email">User</label>
+                <input type="text" name="input_email" id="input_email">
+<!-- 
+                here the client enter with an user password registered
+                aqui o cliente entra com sua senha registrada
+-->
+                <label for="input_password">Password</label>
+                <input type="password" name="input_password" id="input_password">
+<!--
+                here we put the button to send all informations to make login
+                aqui nós colocamos o botão para enviar todas informações para logar
+-->
+                <button type="submit" id="send" disabled>Login</button>
+            </form>
+        </section>
+    </body>
+</html>
