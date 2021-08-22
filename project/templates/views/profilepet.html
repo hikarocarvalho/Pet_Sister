@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+<!-- 
+        here we setup the css file
+        aqui nós setamos o arquivo css 
+-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
+        <script src="{{ url_for('static', filename='js/action.js') }}" defer></script>
+    </head>
+    <body >
+<!--         
+        here we criate one section for resume about user perfil
+        aqui nos criamos uma seção para o resumo sobre o usuário 
+-->
+
+        <header id="perfilphoto" class="perfilphoto">
+            <main>
+                <img src="{{ url_for('static', filename='img/photospet/') }}{{pet.photopet}}.png"></img>
+            </main>
+            <article>
+                <label>
+                    {{pet.name}}
+                </label>
+                <label>
+                    <a href="/removepet/{{pet.id}}">Remove Pet</a>
+                </label>
+            </article>
+        </header>
+
+<!--         
+        here we put all informations about the user
+        aqui nós colocamos todas informações sobre o usuário 
+-->
+
+        <section id="perfildescription" class="perfildescription">
+            <article>
+                <form method="POST" action="/updatepet/{{pet.id}}">
+<!-- 
+                    here are all personal information from an user
+                    aqui está todas informações pessoais do usuário 
+                    
+-->
+        <fieldset>
+            <legend>Pet data</legend>
+            <label for="name">name</label>
+            <input name="input_name" type="text" class="name" id="name" value="{{pet.name}}" required="required">
+        </fieldset>
+        <fieldset>
+            <legend>Health data</legend>
+            <label for="input_weight">Weight</label>
+            <input name="input_weight" type="number" class="input_weight" value="{{pet.weight}}" id="input_weight" required="required">
+            <label for="input_size">Size</label>
+            <input name="input_size" type="number" class="sizepet" id="sizepet" value="{{pet.size}}" required="required">
+            <label for="input_age">Age</label>
+            <input name="input_age" type="number" class="agepet" value="{{pet.age}}" id="agepet" required="required">
+            <label for="input_medicines">Medicines</label>
+            <input name="input_medicines" type="text" class="medicines" id="medicines" value="{{pet.medication}}" required="required">
+            <fieldset class="typeanimal">
+                <legend>Pet Type</legend>
+                {% if pet.photopet == 1: %}
+                <label for="cat">Cat</label><br>
+                <input type="radio" id="cat" name="animal" value="1" checked>
+                <label for="dog">Dog</label><br>
+                <input type="radio" id="dog" name="animal" value="2">
+                {% endif %}
+                {% if pet.photopet == 2: %}
+                <label for="cat">Cat</label><br>
+                <input type="radio" id="cat" name="animal" value="1">
+                <label for="dog">Dog</label><br>
+                <input type="radio" id="dog" name="animal" value="2" checked>
+                {% endif %}
+            </fieldset>
+            <button id="send" class="button petbtn" type="submit">Save</button>
+        </fieldset>
+       
+        </form>
+    </body>
+</html>

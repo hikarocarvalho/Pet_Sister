@@ -150,13 +150,29 @@ form .pets{
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
     overflow-y: scroll;
+   
 }
-
+.pets .pet_container .petchield{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.pets .pet_container .petchield img{
+    max-width:40% ;
+}
+.pets .pet_container .name{
+    font-size: 20px;
+}
 ::-webkit-scrollbar {
     width: 5px;  
   }
@@ -219,4 +235,13 @@ body .perfildescription article fieldset .pet_container .pet{
     border-radius: 5px;
     font-weight: bolder;
     font-size: large;
+}
+.typeanimal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.petbtn{
+    margin-top: 20px;
 }

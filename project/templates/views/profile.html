@@ -28,6 +28,7 @@
                 </label>
             </article>
         </header>
+
 <!--         
         here we put all informations about the user
         aqui nós colocamos todas informações sobre o usuário 
@@ -94,10 +95,10 @@
                         <fieldset class="pet_container">
                             <legend>Pets</legend>
                                 {% for i in pets: %}
-                                    <a href="/registerpet/{{i.id}}" class="pet">
-                                        <div id="newpet" class="newpet">
-                                            <img src="{{ url_for('static', filename='img/photospet/'+ i.photopet +'') }}{{i.photopet}}">
-                                            <label>{{i.name}}</label>
+                                    <a href="/profilepet/{{i.id}}" class="pet">
+                                        <div id="petchield" class="petchield">
+                                            <img src="{{ url_for('static', filename='img/photospet/') }}{{i.photopet}}.png">
+                                            <label class="name">{{i.name}}</label>
                                         </div>
                                     </a>
                                 {% endfor %}

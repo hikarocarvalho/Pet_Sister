@@ -5,6 +5,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 body form{
     margin-top: 2%;
@@ -39,4 +40,8 @@ body form fieldset button{
 }
 body form fieldset button:hover{
     background-color: #4b5463;
+}
+body form fieldset .typeanimal{
+    display: flex;
+    flex-direction: row;
 }

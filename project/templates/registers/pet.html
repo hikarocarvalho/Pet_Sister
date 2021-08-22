@@ -28,8 +28,13 @@
                     <input name="input_age" type="number" class="agepet" id="agepet" required="required">
                     <label for="input_medicines">Medicines</label>
                     <input name="input_medicines" type="text" class="medicines" id="medicines" required="required">
-                    <label for="photopet">Choose a profile picture:</label>
-                    <input type="file" id="photopet" name="photopet" accept="image/png, image/jpeg, image/jpg">
+                    <fieldset class="typeanimal">
+                        <legend>Pet Type</legend>
+                        <label for="cat">Cat</label><br>
+                        <input type="radio" id="cat" name="animal" value="1">
+                        <label for="dog">Dog</label><br>
+                        <input type="radio" id="dog" name="animal" value="2">
+                    </fieldset>
                 </fieldset>
                 <!-- here we put the button to send the information for the register process -->
                 <!-- aqui nós colocamos o botão para realizar o envidos dos dados para cadastro -->

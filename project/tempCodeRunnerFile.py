@@ -1,1 +1,1 @@
-.first_or_404()
+/profilepet/<id>

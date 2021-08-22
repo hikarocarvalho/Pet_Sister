@@ -5,7 +5,6 @@ from werkzeug.utils import secure_filename
 from datetime import datetime,date
 # here we set all app configs
 # aqui configuramos o app
-
 app = Flask(__name__) 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/siter'
 db = SQLAlchemy(app)
@@ -18,7 +17,7 @@ class Pet(db.Model):
     age = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     size = db.Column(db.Float, nullable=False)
-    photopet = db.Column(db.String(50), nullable=True)
+    photopet = db.Column(db.Integer, nullable=True)
     medication = db.Column(db.String(150), nullable=True)
     petowner_id = db.Column(db.Integer, db.ForeignKey('user.id'),
         nullable=False)
@@ -47,6 +46,7 @@ class User(db.Model):
     qualification = db.Column(db.String(100), nullable=True)
     recomendation = db.Column(db.String(100), nullable=True)
     pet = db.relationship('Pet', backref='user', lazy=True)
+    job = db.relationship('Job', backref='pet', lazy=True)
     # def __init__(self,email="",password="",name="",birthday=datetime.now(),street="",block="",batch="",identity_number=0,post_code=0,address_other="",qualification="",recomendation=""):
     #     self.email=email
     #     self.password=password
@@ -60,7 +60,15 @@ class User(db.Model):
     #     self.address_other = address_other
     #     self.qualification = qualification
     #     self.recomendation = recomendation
-#
+# here we create a class for jobs
+# aqui nos criamos uma classe para trabalhos
+class Job(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    description = db.Column(db.String(50), nullable=False)
+    jobdateinit = db.Column(db.Date, nullable=True)
+    jobdatefin = db.Column(db.Date, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),
+        nullable=False)
 # here we define the index route
 # aqui definimos a rota do index
 @app.route('/')
@@ -85,7 +93,23 @@ def profile():
     try:
         if session['user'] != None:
             newlogin = User.query.get(session['user'])
-            return render_template('views/profile.html',usersession = newlogin)
+            pets = getAllPets()
+            return render_template('views/profile.html',usersession = newlogin,pets = pets)
+        else:
+            return redirect('/home')
+    except:
+        session['user'] = None
+        return redirect('/home')
+# here is defined the profile route for the pet
+# aqui está definido a rota do perfil do animal de estimação
+@app.route('/profilepet/<id>')
+def profilepet(id): 
+    try:
+        if session['user'] != None:
+            idpet = id
+            newlogin = User.query.get(session['user'])
+            pet = Pet.query.get(idpet)
+            return render_template('views/profilepet.html',pet = pet)
         else:
             return redirect('/home')
     except:
@@ -93,6 +117,18 @@ def profile():
         return redirect('/home')
 # importa pagina principal
 # import home page
+@app.route('/jobs')
+def jobs():
+    try:
+        if session['user'] != None:
+            newlogin = User.query.get(session['user'])
+            jobs = getAllJobs()
+            return render_template('views/jobs.html',jobs = jobs)
+        else:
+            return redirect('/home')
+    except:
+        session['user'] = None
+        return redirect('/home')
 @app.route('/registeruser')
 def registeruser():
     return render_template('registers/user.html')
@@ -101,6 +137,9 @@ def registeruser():
 @app.route('/registerpet')
 def registerpet():
     return render_template('registers/pet.html')
+@app.route('/newjob')
+def registerjob():
+    return render_template('registers/newjob.html')
 # here we define he route for register pet script
 # aqui nós definimos a rota para o script de registro de animais de estimação
 @app.route('/registerusermessage',methods=['GET','POST'])
@@ -135,41 +174,37 @@ def newpet():
             newPet = Pet()
             newPet.name = str(request.form.get('input_name'))
             newPet.age = request.form.get('input_age')
-            newPet.weight = int(request.form.get('input_weight'))
-            newPet.size = str(request.form.get('input_size'))
+            newPet.weight = float(request.form.get('input_weight'))
+            newPet.size = float(request.form.get('input_size'))
             newPet.medication = str(request.form.get('input_medicine'))
             newPet.petowner_id = session['user']
-            if request.files['photopet'].filename != "":
-                newPet.photopet = request.files['photopet'].filename
-                file = request.files['photopet']
-                filename = secure_filename(file.filename)
-                
-                file.save('flaskr/static/img/photospet',filename)
-            else:
-                newPet.photopet = "defaultpet.png"
+            newPet.photopet = request.form.get('animal')
             db.session.add(newPet)
             db.session.commit()
             message = "You have a new pet!"
     
     return render_template('response/sucess.html',message = message,location=location)
-# here we define a route to page where shows a message about pet registration
-# aqui nos definimos a rota para a pagina de mensagem sobre o registro animais de estimação
-@app.route('/jobs')
-def jobs():
-    try:
-        if session['user'] != None:
-            newlogin = User.query.get(session['user'])
-            return render_template('views/jobs.html')
-        else:
-            return redirect('/home')
-    except:
-        session['user'] = None
-        return redirect('/home')
+# here we define a route to page where shows a message about job registration
+# aqui nos definimos a rota para a pagina de mensagem sobre o registro de trabalhos
+@app.route('/registerjobmessage',methods=['GET','POST'])
+def newjob():
+    message = ""
+    location = "/jobs"
+    if request.method == "POST":
+        newjob = Job()
+        newjob.description = str(request.form.get('input_description'))
+        newjob.jobdateinit = request.form.get('input_dateinit')
+        newjob.jobdatefin = request.form.get('input_datefin')
+        newjob.user_id = session['user']
+        db.session.add(newjob)
+        db.session.commit()
+        message = "You now have one job for others!"
+    
+    return render_template('response/sucess.html',message = message,location=location)
 # here we define a route for the login page
 # aqui nós definimos uma rota para a pagina de login
 @app.route('/login',methods=['GET','POST'])
 def login():
-    
     email =str(request.form.get('input_email'))
     password = str(request.form.get('input_password'))
     message = ""
@@ -178,8 +213,7 @@ def login():
         return render_template('response/sucess.html',message = message,location="/profile")
     else:
         message ="Error Account"
-        return render_template('response/sucess.html',message = message,location="/home")
-        
+        return render_template('response/sucess.html',message = message,location="/home")       
 # here we define a route for logout user
 # aqui nós definimos uma rota para deslogar o usuário
 @app.route('/loginout')
@@ -188,6 +222,17 @@ def loginout():
     return render_template('response/sucess.html',message = "You has been login out, sucess!",location="/home")
 # here we define a route for the update user values
 # aqui nós definimos uma rota para atualizar os valores do usuário
+@app.route('/updatepet/<id>',methods=['GET','POST'])
+def updatepet(id):
+    newupdate = Pet.query.get(id)
+    newupdate.name = str(request.form.get('input_name'))
+    newupdate.age = request.form.get('input_age')
+    newupdate.weight = float(request.form.get('input_weight'))
+    newupdate.size = float(request.form.get('input_size'))
+    newupdate.medication = str(request.form.get('input_medicine'))
+    newupdate.photopet = request.form.get('animal')
+    update("sucess!")
+    return render_template('response/sucess.html',message = "sucess!",location="/profile")
 @app.route('/updateuser',methods=['GET','POST'])
 def updateuser():
     newupdate = User.query.get(session['user'])
@@ -213,6 +258,11 @@ def remove(id):
     session['user'] = None
     delete(userRemove)
     return render_template('response/sucess.html',message = "user has been deleted",location="/home")
+@app.route('/removepet/<id>')
+def removepet(id):
+    petRemove = Pet.query.get(id)
+    delete(petRemove)
+    return render_template('response/sucess.html',message = "Your pet has been deleted",location="/home")
 # here we setup loged user
 # aqui setamos o usuário logado
 def loged(email,password):
@@ -223,7 +273,6 @@ def loged(email,password):
             app.secret_key = i.password
             return True
     return False
-
 # here we send delete request
 # aqui nós enviamos o pedido de esclusão ao banco
 def delete(value):
@@ -249,8 +298,20 @@ def insert(value):
 # pega todos os petes do usuário
 def getAllPets():
     session['user'] 
-    pets = userRemove = Pet.query.filter_by(petowner_id=session['user']).first_or_404()
+    pets = userRemove = Pet.query.filter_by(petowner_id=session['user'])
     return pets
+#get all jobs 
+#pega todos trabalhos
+def getAllJobs():
+    session['user'] 
+    jobs = userRemove = Job.query.all()
+    return jobs
+def getAllPetsByJob(value):
+    session['user']
+    petdict = dict()
+    for i.pet_id in value:
+        petdict[i] = Pet.query.filter_by(id=i).photopet
+    return petdict
 # get photo and save
 # pega a foto e salva
 def photoPet(file):

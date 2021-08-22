@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>new job</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pet.css') }}">
+    </head>
+    <body>
+        <form method="POST" action="/registerjobmessage" enctype="multipart/form-data">
+            <!-- here start the form to get all data values from a new user -->
+            <!-- Aqui começa o formulario para pegar os dados do novo usuario -->
+            <section id="pet_register" class="pet_register">
+                <!-- here we get all job values -->
+                <!-- aqui nos pegamos todos dados sobre o trabalho -->
+                <fieldset>
+                    <legend>Job data</legend>
+                    <label for="input_description">Description Job</label>
+                    <input name="input_description" type="text" class="input_description" id="input_description" required="required">
+                    <label for="input_dateinit">Initial Date</label>
+                    <input type="date" name="input_dateinit" id="input_dateinit">
+                    <label for="input_datefin">Final Date</label>
+                    <input type="date" name="input_datefin" id="input_datefin">
+                </fieldset>
+                <!-- here we put the button to send the information for the register process -->
+                <!-- aqui nós colocamos o botão para realizar o envidos dos dados para cadastro -->
+                <fieldset>
+                    <button id="button_register" class="button_register">Register Job</button>
+                </fieldset>
+            </section>
+        </body>
+    </body>
+</html>

@@ -3,19 +3,22 @@
 
 function changeMenu(){
     var instant = document.getElementById('iframe').getAttribute("src");
-    console.log(instant);
     if(instant.includes("home") || instant.includes("registeruser")){
         document.getElementById('img1').style.display="none";
         document.getElementById('link1').style.display="none";
         document.getElementById('img2').style.display="none";
         document.getElementById('link2').style.display="none";
-        document.getElementById('img3').style.display="flex";
-        document.getElementById('link3').style.display="flex";
-        document.getElementById('img4').style.display="none";
-        document.getElementById('link4').style.display="none";
+        document.getElementById('img3').style.display="none";
+        document.getElementById('link3').style.display="none";
+        document.getElementById('img4').style.display="flex";
+        document.getElementById('link4').style.display="flex";
+        document.getElementById('img5').style.display="none";
+        document.getElementById('link5').style.display="none";
+        document.getElementById('2').style.display="flex";
         document.getElementById('2').style.display="none";
         document.getElementById('3').style.display="none";
         document.getElementById('4').style.display="none";
+        
         console.log('enter here');
     }
     if(!instant.includes("home") && !instant.includes("registeruser")){
@@ -23,10 +26,13 @@ function changeMenu(){
         document.getElementById('link1').style.display="flex";
         document.getElementById('img2').style.display="flex";
         document.getElementById('link2').style.display="flex";
-        document.getElementById('img3').style.display="none";
-        document.getElementById('link3').style.display="none";
-        document.getElementById('img4').style.display="flex";
-        document.getElementById('link4').style.display="flex";
+        document.getElementById('img3').style.display="flex";
+        document.getElementById('link3').style.display="flex";
+        document.getElementById('img4').style.display="none";
+        document.getElementById('link4').style.display="none";
+        document.getElementById('img5').style.display="flex";
+        document.getElementById('link5').style.display="flex";
+        document.getElementById('1').style.display="flex";
         document.getElementById('2').style.display="flex";
         document.getElementById('3').style.display="none";
         document.getElementById('4').style.display="flex";

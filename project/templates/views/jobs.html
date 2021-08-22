@@ -13,13 +13,17 @@
         here we show all jobs for users
         aqui nós mostramos todos os trabalhos para os usuários
 -->
-        {% for i in range(100) %}
+        {% for i in jobs %}
         <section id="job" class="job">
             <header>
-                <img src="{{ url_for('static', filename='img/dog.png') }}">
+                <img src="{{ url_for('static', filename='img/photospet/') }}pet.png">
             </header>
             <article>
-                job person
+                {{i.description}}
+                <br>
+                {{i.jobdateinit}}
+                </br>
+                {{i.jobdatefin}}
             </article>
         </section>
         {% endfor %}
