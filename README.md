@@ -2,9 +2,9 @@
 
 ## `English Description`
 
-#### About This Project
+### About This Project
 
-##### I made this project based on my group project from the second module on Blue Edtech. Where we try to create one solution for people searching for someone to caregiver their pet.
+#### I made this project based on my group project from the second module on Blue Edtech. Where we try to create one solution for people searching for someone to caregiver their pet.
 
 ### How To Run
 
