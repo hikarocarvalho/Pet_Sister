@@ -10,9 +10,11 @@
 
 #### To you run this project, you need to:
 
-1- Clone the project from this repository.
-2- Open the console in the folder project.
-3- Install this dependencies:
+1. Clone the project from this repository.
+
+2. Open the console in the folder project.
+
+3. Install this dependencies:
 ```console
 // flask dependency
 
@@ -26,7 +28,8 @@ pip install psycopg2-binary
 
 pip install -U Flask-SQLAlchemy
 ```
-4- And run this command:
+
+4. And run this command:
 ```console
 python3 __init__.py
 ```
@@ -41,9 +44,12 @@ python3 __init__.py
 
 #### Para Executar este projeto você irá precisar:
 
-1- Clonar este repositório.
-1- Abrir o terminal na pasta do projeto.
-2- Instalar estas dependências:
+1. Clonar este repositório.
+
+2. Abrir o terminal na pasta do projeto.
+
+3. Instalar estas dependências:
+
 ```console
 // dependência do *flask*
 
@@ -57,7 +63,8 @@ pip install psycopg2-binary
 
 pip install -U Flask-SQLAlchemy
 ```
-3- E executar este comando no terminal:
+4. E executar este comando no terminal:
+
 ```console
 python3 __init__.py
 ```
